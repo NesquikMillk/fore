@@ -35,7 +35,7 @@ const loader = new FontLoader();
 loader.load(
   'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', // URL встроенного шрифта
   function (font) {
-    const geometry = new TextGeometry('йоу реп', {
+    const geometry = new TextGeometry('yo rap', {
       font: font,
       size: 2,
       height: 0.5,
