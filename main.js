@@ -1,8 +1,7 @@
 import * as THREE from 'three';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 
 // Сцена
 const scene = new THREE.Scene();
@@ -23,9 +22,8 @@ controls.enablePan = false;
 controls.minDistance = 5;
 controls.maxDistance = 20;
 controls.minPolarAngle = 0;
-controls.maxPolarAngle = 5;
-controls.autoRotate = false;
-controls.target = new THREE.Vector3(0, 1, 0);
+controls.maxPolarAngle = Math.PI / 2; // Ограничение на вращение камеры
+controls.target.set(0, 1, 0);
 controls.update();
 
 // Установка белого фона
@@ -34,26 +32,34 @@ scene.environment = null;
 
 // Текст
 const loader = new FontLoader();
-loader.load('./fonts/helvetiker_regular.typeface.json', function (font) {
-  const geometry = new TextGeometry("йоу реп", {
-    font: font,
-    size: 2,
-    height: 2,
-    depth: 0.5,
-    curveSegments: 15
-  });
+loader.load(
+  'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', // URL встроенного шрифта
+  function (font) {
+    const geometry = new TextGeometry('йоу реп', {
+      font: font,
+      size: 2,
+      height: 0.5,
+      curveSegments: 15,
+    });
 
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-  const textMesh = new THREE.Mesh(geometry, material);
+    const material = new THREE.MeshStandardMaterial({ color: 0x000000 }); // Чёрный цвет текста
+    const textMesh = new THREE.Mesh(geometry, material);
 
-  // Центрируем текст
-  geometry.computeBoundingBox();
-  const boundingBox = geometry.boundingBox;
-  const xOffset = (boundingBox.max.x - boundingBox.min.x) / 2;
-  textMesh.position.set(-xOffset, 1, 0);
+    // Центрирование текста
+    geometry.computeBoundingBox();
+    const boundingBox = geometry.boundingBox;
+    const xOffset = (boundingBox.max.x - boundingBox.min.x) / 2;
+    const yOffset = (boundingBox.max.y - boundingBox.min.y) / 2;
+    textMesh.position.set(-xOffset, -yOffset, 0);
 
-  scene.add(textMesh);
-});
+    scene.add(textMesh);
+  }
+);
+
+// Источник света
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(10, 10, 10);
+scene.add(light);
 
 // Анимация
 function animate() {
