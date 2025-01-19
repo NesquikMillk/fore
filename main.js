@@ -27,7 +27,7 @@ controls.target.set(0, 1, 0);
 controls.update();
 
 // Установка белого фона
-scene.background = new THREE.Color(0xffffff); // Белый цвет
+scene.background = new THREE.Color(0x0000000); // Черный цвет
 scene.environment = null;
 
 // Текст
@@ -42,7 +42,7 @@ loader.load(
       curveSegments: 15,
     });
 
-    const material = new THREE.MeshStandardMaterial({ color: 0xffffff }); // Чёрный цвет текста
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff }); // Белый цвет текста
     const textMesh = new THREE.Mesh(geometry, material);
 
     // Центрирование текста
