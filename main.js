@@ -26,8 +26,8 @@ controls.maxPolarAngle = Math.PI / 2; // Ограничение на враще�
 controls.target.set(0, 1, 0);
 controls.update();
 
-// Установка чёрного фона
-scene.background = new THREE.Color(0x000000); // Чёрный цвет
+// Установка белого фона
+scene.background = new THREE.Color(0xffffff); // Белый цвет
 scene.environment = null;
 
 // Текст
@@ -42,7 +42,7 @@ loader.load(
       curveSegments: 15,
     });
 
-    const material = new THREE.MeshStandardMaterial({ color: 0xffffff }); // Белый цвет текста
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff }); // Чёрный цвет текста
     const textMesh = new THREE.Mesh(geometry, material);
 
     // Центрирование текста
@@ -57,7 +57,7 @@ loader.load(
 );
 
 // Источник света
-const light = new THREE.PointLight(0xffffff, 1, 100);
+const light = new THREE.PointLight(0x0000000, 1, 100);
 light.position.set(10, 10, 10);
 scene.add(light);
 
