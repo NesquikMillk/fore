@@ -42,7 +42,7 @@ loader.load(
       curveSegments: 15,
     });
 
-    const material = new THREE.MeshStandardMaterial({ color: 0xffffff }); // Белый цвет текста
+   const material = new THREE.MeshBasicMaterial({ color: 0xffffff }); // Используем материал, не зависящий от освещения
     const textMesh = new THREE.Mesh(geometry, material);
 
     // Центрирование текста
