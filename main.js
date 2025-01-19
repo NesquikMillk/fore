@@ -26,8 +26,8 @@ controls.maxPolarAngle = Math.PI / 2; // Ограничение на враще�
 controls.target.set(0, 1, 0);
 controls.update();
 
-// Установка белого фона
-scene.background = new THREE.Color(0xffffff); // Белый цвет
+// Установка чёрного фона
+scene.background = new THREE.Color(0x000000); // Чёрный цвет
 scene.environment = null;
 
 // Текст
@@ -35,14 +35,14 @@ const loader = new FontLoader();
 loader.load(
   'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', // URL встроенного шрифта
   function (font) {
-    const geometry = new TextGeometry('yo rap', {
+    const geometry = new TextGeometry('HEX: FFFFFF', {
       font: font,
       size: 2,
       height: 0.5,
       curveSegments: 15,
     });
 
-    const material = new THREE.MeshStandardMaterial({ color: 0x000000 }); // Чёрный цвет текста
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff }); // Белый цвет текста
     const textMesh = new THREE.Mesh(geometry, material);
 
     // Центрирование текста
